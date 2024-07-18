@@ -1,3 +1,3 @@
-# mobile_food_delivery
+# MOBILE APP FOR EMPLOYEES IN RESTAURANT
 
-A new Flutter project.
+Employee can order dish for customers, view order history and payment history.
