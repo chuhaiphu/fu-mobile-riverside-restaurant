@@ -7,8 +7,6 @@ import 'package:mobile_food_delivery/utils/dimensions.dart';
 import 'package:mobile_food_delivery/widgets/app_icon.dart';
 import 'package:mobile_food_delivery/widgets/area_widget.dart';
 
-// In lib/pages/table/pick_table.dart
-
 class PickTable extends StatefulWidget {
   const PickTable({Key? key}) : super(key: key);
 
@@ -36,7 +34,7 @@ class _PickTableState extends State<PickTable> {
         leading: Padding(
           padding: const EdgeInsets.all(0),
           child: GestureDetector(
-            onTap: () => Get.back(), // Navigate to CartPage
+            onTap: () => Get.back(),
             child: AppIcon(
               icon: Icons.arrow_back_ios,
               iconColor: Colors.black,
@@ -56,18 +54,15 @@ class _PickTableState extends State<PickTable> {
             }
             return Column(
               children: [
-                // Upstairs area
                 if (controller.getUpstairsArea() != null)
                   AreaWidget(
                     area: controller.getUpstairsArea()!,
                     columns: 8,
                   ),
-                // Center and Side areas
                 Expanded(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Center areas (80% width)
                       Expanded(
                         flex: 7,
                         child: ListView.builder(
@@ -80,10 +75,9 @@ class _PickTableState extends State<PickTable> {
                           },
                         ),
                       ),
-                      // Side area (20% width)
                       if (controller.getSideArea() != null)
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3, // 20% of screen width
+                          width: MediaQuery.of(context).size.width * 0.3,
                           child: SingleChildScrollView(
                             child: AreaWidget(
                               area: controller.getSideArea()!,
@@ -99,17 +93,19 @@ class _PickTableState extends State<PickTable> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.check),
-        onPressed: () {
-          if (controller.selectedTable != null) {
-            Get.back(result: {
-              'id': controller.selectedTable!.tableId,
-              'name': controller.selectedTable!.name
-            });
-          } else {
-            Get.snackbar('Error', 'Please select a table');
-          }
+      floatingActionButton: GetBuilder<TableController>(
+        builder: (controller) {
+          return controller.selectedTable != null
+            ? FloatingActionButton(
+                child: const Icon(Icons.check),
+                onPressed: () {
+                  Get.back(result: {
+                    'id': controller.selectedTable!.tableId,
+                    'name': controller.selectedTable!.name
+                  });
+                },
+              )
+            : const SizedBox.shrink();
         },
       ),
     );
