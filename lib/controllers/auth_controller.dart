@@ -33,7 +33,7 @@ class AuthController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, "Login successful");
       loadDataAfterLogin();
     } else {
-      String errorMessage = "An error occurred";
+      String errorMessage = response.body['details'][0];
       if (response.body != null &&
           response.body['details'] != null &&
           response.body['details'].isNotEmpty) {
@@ -50,7 +50,7 @@ class AuthController extends GetxController implements GetxService {
   void loadDataAfterLogin() {
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<TableController>().getAreas();
-    Get.find<OrderController>().getOrders();
+    Get.find<OrderController>().getOrdersByUser(_accountId);
   }
 
   void loadUserTokenAndAccountId() {

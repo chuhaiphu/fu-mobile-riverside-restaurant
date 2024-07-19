@@ -29,7 +29,7 @@ class TotalPriceDisplay extends StatelessWidget {
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               Text(
-                'Đã trả: ${order.advance.toStringAsFixed(0)}đ',
+                'Đã trả trước: ${order.advance.toStringAsFixed(0)}đ',
                 style: const TextStyle(fontSize: 14),
               ),
             ],

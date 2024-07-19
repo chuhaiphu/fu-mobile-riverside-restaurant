@@ -26,4 +26,8 @@ class OrderRepo extends GetxService {
   Future<Response> deleteOrder(String id) async {
     return await apiClient.deleteData('${AppConstants.ORDER_URI}/$id');
   }
+
+  Future<Response> getOrdersByUser(String userId) async {
+    return await apiClient.getData('${AppConstants.ORDER_BY_USER_URI}/$userId');
+  }
 }

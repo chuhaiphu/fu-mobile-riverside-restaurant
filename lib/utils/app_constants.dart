@@ -11,6 +11,7 @@ class AppConstants {
   static const String AREA_URI = "/area";
   static const String TABLE_URI = "/table";
   static const String ORDER_URI = "/order";
+  static const String ORDER_BY_USER_URI = "/order/byUser";
   static const String ORDER_DETAIL_URI = "/orderDetail";
   static const String PAYMENT_URI = '/payment';
 }

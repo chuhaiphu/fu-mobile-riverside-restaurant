@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile_food_delivery/controllers/auth_controller.dart';
 import 'package:mobile_food_delivery/controllers/order_controller.dart';
 import 'package:mobile_food_delivery/controllers/payment_controller.dart';
 import 'package:mobile_food_delivery/models/payment.dart';
@@ -89,7 +90,7 @@ class ViewOrderPage extends GetView<OrderController> {
                                 totalPrice: order.totalPrice,
                                 totalPaid: totalPaid,
                               ));
-                          await controller.getOrders();
+                          await controller.getOrdersByUser(Get.find<AuthController>().accountId);
                           await paymentController.getPayments();
                         },
                       ),

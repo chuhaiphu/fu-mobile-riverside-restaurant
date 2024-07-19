@@ -46,7 +46,7 @@ class _OrderPageState extends State<OrderPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.mainBlackColor),
           onPressed: () {
-            Get.offAll(() => HomePage());
+            Get.back();
           },
         ),
         title: Text('Chi tiết đơn hàng',
@@ -74,6 +74,19 @@ class _OrderPageState extends State<OrderPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.mainColor,
+                  foregroundColor: AppColors.mainBlackColor,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                ),
+                onPressed: () {
+                  Get.offAll(() => HomePage());
+                },
+                child: const Icon(Icons.home, size: 20),
+              ),
+              SizedBox(width: Dimensions.value_10),
+              SizedBox(height: Dimensions.value_10),
               ElevatedButton.icon(
                 icon: const Icon(Icons.history, size: 20),
                 label:

@@ -91,4 +91,14 @@ Future<void> updateOrder(Order order) async {
       // Handle error
     }
   }
+
+  Future<void> getOrdersByUser(String userId) async {
+    Response response = await orderRepo.getOrdersByUser(userId);
+    if (response.statusCode == 200) {
+      orders.value = (response.body['content'] as List).map((item) => Order.fromJson(item)).toList();
+      update();
+    } else {
+      print("Failed to load orders: ${response.statusText}");
+    }
+  }
 }
